@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2>Dataset Summary</h2>
+
+<p><strong>Rows:</strong> {{ rows }}</p>
+<p><strong>Columns:</strong> {{ cols }}</p>
+
+<h4>Column Names</h4>
+<ul>
+{% for col in columns %}
+<li>{{ col }}</li>
+{% endfor %}
+</ul>
+
+<h4>Dataset Preview</h4>
+
+<div class="table-responsive">
+{{ preview|safe }}
+</div>
+
+</div>
+
+{% endblock %}
