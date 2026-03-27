@@ -12,13 +12,13 @@
             <div class="card h-100" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ job.job_title }}</h5>
-                    <h6 class="card-title">{{job.company}}</h6>
-                    <p class="card-text">
-                        <p><strong>Skills Required:</strong> 
-                            <ul>
-                                <li>{{ job.skills }}</li>
-                            </ul>
-                        </p>
+                    <h6 class="card-title">{{job.company}} -> 📍 {{job.location}}</h6>
+                    <p class="card-text"><strong>Skills Required:</strong> 
+                        <ul>
+                            {% for skills in job.skills %}
+                                <li>{{ skills }}</li>
+                            {% endfor %}
+                        </ul>
                         <p><strong>Salary:</strong> ${{ job.salary_min }} - ${{ job.salary_max }}</p>
                         <p><strong>Match Score:</strong> {{ job.match_score }} skills matched</p>
                     </p>

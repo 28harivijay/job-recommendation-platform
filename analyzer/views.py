@@ -12,19 +12,14 @@ def Recommend(request):
         return render(request, 'results.html', {'jobs': jobs , 'skills': user_skills})
     return render(request, 'recommend.html')
 
-
-
-
 def Insights(request):
     df = pd.read_csv('datasets/job_market.csv')
     df = df.dropna(subset=['skills', 'company', 'location'])
-    print(df['company'].value_counts().head(5))
-    print(df['location'].value_counts().head(5))
 
     all_skills = df['skills'].str.split(', ').explode()
     top_skills = all_skills.value_counts().head(10).to_dict()
 
-    top_companies = df['company'].value_counts().head(5).to_dict()
+    top_companies = df['company'].value_counts().head(10).to_dict()
 
     df['avg_salary'] = (df['salary_min'] + df['salary_max']) / 2
     avg_salary = df.groupby('job_title')['avg_salary'].mean().round(0).sort_values(ascending=False).head(10).to_dict()
